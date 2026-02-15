@@ -1,3 +1,5 @@
+const path = require("path");
+
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
@@ -51,6 +53,9 @@ app.delete("/tasks/:index", (req, res) => {
   saveTasks(tasks);
   res.json({ success: true });
 });
+// Serve frontend files
+app.use(express.static(path.join(__dirname, "../")));
+
 
 // Deploy-ready port
 const PORT = process.env.PORT || 5000;
